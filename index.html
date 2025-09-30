@@ -19,7 +19,7 @@
     }
     .menu {
       width: 90%;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
       background: rgba(255,255,255,0.9);
       border-radius: 20px;
@@ -27,6 +27,7 @@
     }
     h2 {
       margin: 20px 0 10px;
+      font-size: 20px;
     }
     .products {
       display: flex;
@@ -160,40 +161,91 @@
   </header>
 
   <div class="menu">
+    <!-- Keychain -->
     <h2>70K - Keychain 7cm</h2>
     <div class="products">
       <div class="product" data-name="Keychain 7cm" data-price="70000">
-        <img src="assets/r1_c1.png" alt="Keychain 1">
-        <div class="controls">
-          <button class="minus">-</button>
-          <span>0</span>
-          <button class="plus">+</button>
-        </div>
+        <img src="assets/keychain1.png" alt="Keychain 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
       </div>
-      <!-- thêm các sản phẩm khác cùng cách -->
+      <div class="product" data-name="Keychain 7cm" data-price="70000">
+        <img src="assets/keychain2.png" alt="Keychain 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
     </div>
 
-    <h2>100K - Standee 10cm</h2>
+    <!-- Standee -->
+    <h2>100K - Standee</h2>
     <div class="products">
       <div class="product" data-name="Standee" data-price="100000">
-        <img src="assets/r2_c1.png" alt="Standee">
-        <div class="controls">
-          <button class="minus">-</button>
-          <span>0</span>
-          <button class="plus">+</button>
-        </div>
+        <img src="assets/standee1.png" alt="Standee 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+      <div class="product" data-name="Standee" data-price="100000">
+        <img src="assets/standee2.png" alt="Standee 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
       </div>
     </div>
 
-    <!-- Badge, Layered, Polaroid, Artprint... -->
-    <!-- Lặp tương tự -->
-    
+    <!-- Badge -->
+    <h2>40K - Badge</h2>
+    <div class="products">
+      <div class="product" data-name="Badge" data-price="40000">
+        <img src="assets/badge1.png" alt="Badge 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+      <div class="product" data-name="Badge" data-price="40000">
+        <img src="assets/badge2.png" alt="Badge 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+    </div>
+
+    <!-- Layered -->
+    <h2>85K - Layered Keychain</h2>
+    <div class="products">
+      <div class="product" data-name="Layered Keychain" data-price="85000">
+        <img src="assets/layered1.png" alt="Layered 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+      <div class="product" data-name="Layered Keychain" data-price="85000">
+        <img src="assets/layered2.png" alt="Layered 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+    </div>
+
+    <!-- Polaroid -->
+    <h2>40K - Polaroid</h2>
+    <div class="products">
+      <div class="product" data-name="Polaroid" data-price="40000">
+        <img src="assets/polaroid1.png" alt="Polaroid 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+      <div class="product" data-name="Polaroid" data-price="40000">
+        <img src="assets/polaroid2.png" alt="Polaroid 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+    </div>
+
+    <!-- Artprint -->
+    <h2>50K - Artprint</h2>
+    <div class="products">
+      <div class="product" data-name="Artprint" data-price="50000">
+        <img src="assets/artprint1.png" alt="Artprint 1">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+      <div class="product" data-name="Artprint" data-price="50000">
+        <img src="assets/artprint2.png" alt="Artprint 2">
+        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+      </div>
+    </div>
+
     <div class="total">Tổng: <span id="total">0</span> VND</div>
     <div class="checkout">
       <button id="checkoutBtn">Thanh toán</button>
     </div>
   </div>
 
+  <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content" id="popupContent">
       <h3>Danh sách sản phẩm</h3>

@@ -2,247 +2,289 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cửa hàng</title>
+  <title>Vanilla's Menu</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fafafa url('bg.jpg') no-repeat center top/cover;
-      color: #333;
+      font-family: "Arial", sans-serif;
+      background: url("assets/background.png") no-repeat center top;
+      background-size: cover;
     }
     header {
-      background: url('banner.jpg') no-repeat center/cover;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px #000;
+      text-align: center;
+      padding: 20px;
     }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 10px;
+    header img {
+      max-width: 100%;
+    }
+    .menu {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    h2 {
+      margin: 20px 0 10px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
     }
     .product {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 15px;
-      margin-bottom: 15px;
-      transition: transform 0.2s;
+      width: 150px;
+      text-align: center;
     }
-    .product:hover { transform: translateY(-3px); }
     .product img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 15px;
+      width: 100%;
+      border-radius: 10px;
     }
-    .product-info { flex: 1; }
-    .product-name { font-weight: bold; font-size: 1.1rem; }
-    .product-desc { font-size: 0.9rem; color: #666; }
-    .product-price { color: #d33; margin-top: 5px; font-weight: bold; }
     .controls {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 5px;
+      margin-top: 8px;
+      gap: 6px;
     }
     .controls button {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #8bc34a;
       border-radius: 50%;
-      border: none;
-      background: #f04;
-      color: #fff;
-      font-size: 18px;
+      background: white;
       cursor: pointer;
-      transition: background 0.2s;
+      font-weight: bold;
+      transition: 0.2s;
     }
-    .controls button:hover { background: #c03; }
-    .controls input {
-      width: 40px;
+    .controls button:hover {
+      background: #8bc34a;
+      color: white;
+    }
+    .controls span {
+      width: 24px;
+      display: inline-block;
       text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 3px;
     }
     .total {
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-align: right;
+      font-size: 20px;
       margin: 20px 0;
+      text-align: right;
     }
-    .actions { text-align: center; margin-bottom: 30px; }
-    .actions button {
-      padding: 10px 20px;
-      margin: 5px;
+    .checkout {
+      text-align: right;
+    }
+    .checkout button {
+      background: #8bc34a;
       border: none;
-      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      padding: 12px 24px;
+      border-radius: 30px;
       cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      background: #28a745;
-      transition: background 0.3s;
     }
-    .actions button:hover { background: #1e7e34; }
-    .reset { background: #dc3545 !important; }
-    .reset:hover { background: #a71d2a !important; }
     /* Popup */
     .popup {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
       display: none;
-      align-items: center;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
       justify-content: center;
-      animation: fadein 0.3s;
+      align-items: center;
+      z-index: 1000;
     }
-    @keyframes fadein { from {opacity:0;} to {opacity:1;} }
     .popup-content {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 20px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      animation: scaleIn 0.3s;
+      width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
-    @keyframes scaleIn { from {transform: scale(0.8);} to {transform: scale(1);} }
-    .popup h2 { margin-top: 0; }
-    .popup ul { text-align: left; padding: 0; list-style: none; }
-    .popup ul li { margin-bottom: 5px; }
-    .popup button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      border: none;
+    .popup h3 { margin-top: 0; }
+    .popup ul { padding-left: 20px; }
+    .popup input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #aaa;
       border-radius: 6px;
+    }
+    .popup-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .popup-buttons button {
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
-      background: #007bff;
-      color: #fff;
+      font-size: 14px;
+    }
+    .btn-back {
+      border: 2px solid #8bc34a;
+      background: none;
+      color: #8bc34a;
+    }
+    .btn-submit {
+      border: none;
+      background: #8bc34a;
+      color: white;
     }
     footer {
       text-align: center;
-      padding: 20px;
-      background: #222;
-      color: #fff;
+      margin: 30px 0;
+      color: #555;
     }
-    footer a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
+    .socials {
+      margin-top: 10px;
+    }
+    .socials svg {
+      width: 24px;
+      height: 24px;
+      margin: 0 8px;
+      fill: #555;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .socials svg:hover {
+      fill: #8bc34a;
     }
   </style>
 </head>
 <body>
-  <header>Shop Online</header>
-  <div class="container" id="product-list"></div>
-  <div class="container">
-    <div class="total" id="total">Tổng: 0₫</div>
-    <div class="actions">
-      <button onclick="checkout()">Thanh toán</button>
-      <button class="reset" onclick="resetStock()">Reset tồn kho</button>
+  <header>
+    <img src="assets/header.png" alt="Vanilla's Menu">
+  </header>
+
+  <div class="menu">
+    <h2>70K - Keychain 7cm</h2>
+    <div class="products">
+      <div class="product" data-name="Keychain 7cm" data-price="70000">
+        <img src="assets/r1_c1.png" alt="Keychain 1">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+      <!-- thêm các sản phẩm khác cùng cách -->
+    </div>
+
+    <h2>100K - Standee 10cm</h2>
+    <div class="products">
+      <div class="product" data-name="Standee" data-price="100000">
+        <img src="assets/r2_c1.png" alt="Standee">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badge, Layered, Polaroid, Artprint... -->
+    <!-- Lặp tương tự -->
+    
+    <div class="total">Tổng: <span id="total">0</span> VND</div>
+    <div class="checkout">
+      <button id="checkoutBtn">Thanh toán</button>
     </div>
   </div>
-  <!-- Popup -->
+
   <div class="popup" id="popup">
-    <div class="popup-content" id="popup-content">
-      <h2>Đơn hàng của bạn</h2>
-      <ul id="order-list"></ul>
-      <div id="order-total"></div>
-      <button onclick="closePopup()">Quay lại</button>
+    <div class="popup-content" id="popupContent">
+      <h3>Danh sách sản phẩm</h3>
+      <ul id="orderList"></ul>
+      <div><strong>Tổng: <span id="popupTotal">0</span> VND</strong></div>
+      <input type="text" placeholder="Số điện thoại hoặc link Facebook">
+      <div style="text-align:center; margin:10px 0;">
+        <img src="assets/qr.png" alt="QR" width="150">
+      </div>
+      <div class="popup-buttons">
+        <button class="btn-back" id="backBtn">Quay lại</button>
+        <button class="btn-submit" id="submitBtn">Submit</button>
+      </div>
     </div>
   </div>
+
   <footer>
-    <p>© 2025 My Shop</p>
-    <a href="#">Facebook</a> | <a href="#">Instagram</a>
+    <div>@lythva</div>
+    <div class="socials">
+      <!-- Facebook -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.3 3h-1.9v7A10 10 0 0 0 22 12"/></svg>
+      <!-- Instagram -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.8-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/></svg>
+    </div>
   </footer>
-<script>
-  const products = [
-    {id:1, name:"Keychain 7cm", desc:"Móc khoá nhỏ xinh", price:70000, img:"p1.jpg"},
-    {id:2, name:"Layered Keychain", desc:"Móc khoá nhiều lớp", price:85000, img:"p2.jpg"},
-    {id:3, name:"Polaroid", desc:"Ảnh polaroid dễ thương", price:50000, img:"p3.jpg"},
-    {id:4, name:"Sticker Pack", desc:"Bộ sticker", price:30000, img:"p4.jpg"},
-    {id:5, name:"Poster A3", desc:"Poster khổ lớn", price:120000, img:"p5.jpg"},
-  ];
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || {};
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    const products = document.querySelectorAll('.product');
+    const totalEl = document.getElementById('total');
+    const popup = document.getElementById('popup');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const backBtn = document.getElementById('backBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const orderList = document.getElementById('orderList');
+    const popupTotal = document.getElementById('popupTotal');
 
-  function renderProducts(){
-    const list = document.getElementById("product-list");
-    list.innerHTML = "";
-    products.forEach(p=>{
-      const qty = cart[p.id]||0;
-      list.innerHTML += `
-        <div class="product">
-          <img src="${p.img}" alt="${p.name}">
-          <div class="product-info">
-            <div class="product-name">${p.name}</div>
-            <div class="product-desc">${p.desc}</div>
-            <div class="product-price">${p.price.toLocaleString()}₫</div>
-          </div>
-          <div class="controls">
-            <button onclick="updateQty(${p.id}, -1)">-</button>
-            <input type="text" value="${qty}" readonly>
-            <button onclick="updateQty(${p.id}, 1)">+</button>
-          </div>
-        </div>`;
+    function updateTotal() {
+      let total = 0;
+      products.forEach(p => {
+        const price = parseInt(p.dataset.price);
+        const qty = parseInt(p.querySelector('span').textContent);
+        total += price * qty;
+      });
+      totalEl.textContent = total.toLocaleString();
+    }
+
+    products.forEach(p => {
+      const minus = p.querySelector('.minus');
+      const plus = p.querySelector('.plus');
+      const span = p.querySelector('span');
+      minus.onclick = () => {
+        let qty = parseInt(span.textContent);
+        if (qty > 0) span.textContent = qty - 1;
+        updateTotal();
+      };
+      plus.onclick = () => {
+        let qty = parseInt(span.textContent);
+        if (qty < 10) span.textContent = qty + 1;
+        updateTotal();
+      };
     });
-    updateTotal();
-  }
 
-  function updateQty(id, delta){
-    if(!cart[id]) cart[id]=0;
-    cart[id]+=delta;
-    if(cart[id]<0) cart[id]=0;
-    if(cart[id]>10) cart[id]=10;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderProducts();
-  }
+    checkoutBtn.onclick = () => {
+      orderList.innerHTML = "";
+      let total = 0;
+      products.forEach(p => {
+        const qty = parseInt(p.querySelector('span').textContent);
+        if (qty > 0) {
+          const li = document.createElement('li');
+          li.textContent = `${p.dataset.name} x${qty}`;
+          orderList.appendChild(li);
+          total += qty * parseInt(p.dataset.price);
+        }
+      });
+      popupTotal.textContent = total.toLocaleString();
+      popup.style.display = 'flex';
+    };
 
-  function updateTotal(){
-    let sum = 0;
-    for(const id in cart){
-      const p = products.find(x=>x.id==id);
-      sum += cart[id]*p.price;
-    }
-    document.getElementById("total").innerText = "Tổng: " + sum.toLocaleString() + "₫";
-  }
+    backBtn.onclick = () => {
+      popup.style.display = 'none';
+    };
 
-  function checkout(){
-    const popup = document.getElementById("popup");
-    const orderList = document.getElementById("order-list");
-    const orderTotal = document.getElementById("order-total");
-    orderList.innerHTML = "";
-    let sum = 0;
-    for(const id in cart){
-      const p = products.find(x=>x.id==id);
-      if(cart[id]>0){
-        orderList.innerHTML += `<li>${p.name} x ${cart[id]} = ${(p.price*cart[id]).toLocaleString()}₫</li>`;
-        sum += cart[id]*p.price;
-      }
-    }
-    orderTotal.innerHTML = "<strong>Tổng cộng: "+sum.toLocaleString()+"₫</strong>";
-    popup.style.display = "flex";
-  }
-
-  function closePopup(){ document.getElementById("popup").style.display="none"; }
-
-  function resetStock(){
-    localStorage.removeItem("cart");
-    cart = {};
-    renderProducts();
-  }
-
-  renderProducts();
-</script>
+    submitBtn.onclick = () => {
+      html2canvas(document.getElementById('popupContent')).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'order.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    };
+  </script>
 </body>
 </html>

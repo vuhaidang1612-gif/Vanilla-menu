@@ -2,45 +2,42 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Vanilla's Menu</title>
+  <title>Vanilla Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       font-family: "Arial", sans-serif;
-      background: url("background caro.png") no-repeat center top;
+      background: url("assets/background.png") no-repeat center top;
       background-size: cover;
     }
-    header {
-      text-align: center;
-      padding: 20px;
-    }
     header img {
-      max-width: 100%;
+      width: 100%;
+      display: block;
     }
-    .menu {
-      width: 90%;
-      max-width: 1100px;
+    .container {
+      max-width: 1200px;
       margin: auto;
-      background: rgba(255,255,255,0.9);
-      border-radius: 20px;
       padding: 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
     }
-    h2 {
-      margin: 20px 0 10px;
-      font-size: 20px;
-    }
+    h2 { margin: 20px 0 10px; }
+
+    /* GRID */
     .products {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
     }
     .product {
-      width: 150px;
       text-align: center;
     }
     .product img {
       width: 100%;
       border-radius: 10px;
+      max-height: 180px;
+      object-fit: cover;
     }
     .controls {
       display: flex;
@@ -150,92 +147,102 @@
       cursor: pointer;
       transition: 0.2s;
     }
-    .socials svg:hover {
-      fill: #8bc34a;
+    .socials svg:hover { fill: #8bc34a; }
+
+    /* Mobile 2 sản phẩm / 1 hàng */
+    @media (max-width: 600px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .container { padding: 12px; }
+      .product img { max-height: 120px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="assets/header.png" alt="Vanilla's Menu">
+    <img src="assets/header.png" alt="Header">
   </header>
 
-  <div class="menu">
-    <!-- Keychain -->
-    <h2>70K - Keychain 7cm</h2>
+  <div class="container">
+    <h2>Keychain 7cm - 70K</h2>
     <div class="products">
       <div class="product" data-name="Keychain 7cm" data-price="70000">
         <img src="assets/keychain1.png" alt="Keychain 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
       <div class="product" data-name="Keychain 7cm" data-price="70000">
         <img src="assets/keychain2.png" alt="Keychain 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
     </div>
 
-    <!-- Standee -->
-    <h2>100K - Standee</h2>
+    <h2>Standee - 100K</h2>
     <div class="products">
       <div class="product" data-name="Standee" data-price="100000">
         <img src="assets/standee1.png" alt="Standee 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-      <div class="product" data-name="Standee" data-price="100000">
-        <img src="assets/standee2.png" alt="Standee 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
     </div>
 
-    <!-- Badge -->
-    <h2>40K - Badge</h2>
+    <h2>Badge - 40K</h2>
     <div class="products">
       <div class="product" data-name="Badge" data-price="40000">
-        <img src="assets/badge1.png" alt="Badge 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-      <div class="product" data-name="Badge" data-price="40000">
-        <img src="assets/badge2.png" alt="Badge 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <img src="assets/badge1.png" alt="Badge">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
     </div>
 
-    <!-- Layered -->
-    <h2>85K - Layered Keychain</h2>
+    <h2>Layered Keychain - 85K</h2>
     <div class="products">
       <div class="product" data-name="Layered Keychain" data-price="85000">
-        <img src="assets/layered1.png" alt="Layered 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-      <div class="product" data-name="Layered Keychain" data-price="85000">
-        <img src="assets/layered2.png" alt="Layered 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-    </div>
-
-    <!-- Polaroid -->
-    <h2>40K - Polaroid</h2>
-    <div class="products">
-      <div class="product" data-name="Polaroid" data-price="40000">
-        <img src="assets/polaroid1.png" alt="Polaroid 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-      <div class="product" data-name="Polaroid" data-price="40000">
-        <img src="assets/polaroid2.png" alt="Polaroid 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <img src="assets/layered1.png" alt="Layered Keychain">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
     </div>
 
-    <!-- Artprint -->
-    <h2>50K - Artprint</h2>
+    <h2>Polaroid - 40K</h2>
+    <div class="products">
+      <div class="product" data-name="Polaroid" data-price="40000">
+        <img src="assets/polaroid1.png" alt="Polaroid">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
+      </div>
+    </div>
+
+    <h2>Artprint - 50K</h2>
     <div class="products">
       <div class="product" data-name="Artprint" data-price="50000">
-        <img src="assets/artprint1.png" alt="Artprint 1">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
-      </div>
-      <div class="product" data-name="Artprint" data-price="50000">
-        <img src="assets/artprint2.png" alt="Artprint 2">
-        <div class="controls"><button class="minus">-</button><span>0</span><button class="plus">+</button></div>
+        <img src="assets/artprint1.png" alt="Artprint">
+        <div class="controls">
+          <button class="minus">-</button>
+          <span>0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
     </div>
 
@@ -245,7 +252,6 @@
     </div>
   </div>
 
-  <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content" id="popupContent">
       <h3>Danh sách sản phẩm</h3>
